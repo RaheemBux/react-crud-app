@@ -49,6 +49,7 @@ class AddUser extends Component {
             },
             ).then((response) => console.log(response));
         }
+        window.location.reload(true);
         e.preventDefault()
     }
     view  = (id) =>{
@@ -67,7 +68,8 @@ class AddUser extends Component {
     delete  = (id) =>{
         axios.get('https://studentv-api.herokuapp.com/studentv/user/delete/'+id)
         .then(response =>  {
-            console.log(response);       
+            console.log(response); 
+            window.location.reload(true);      
         })
     }
    
