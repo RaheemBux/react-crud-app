@@ -14,11 +14,12 @@ class AddUser extends Component {
             mobileNo : '',
             id : 0,
             users : [],
+            BASE_URL : 'https://user-information-system.herokuapp.com/testsapphire/',
         }
 
     }
     componentDidMount = () =>{
-        axios.get('https://studentv-api.herokuapp.com/studentv/user/getAll')
+        axios.get(this.state.BASE_URL+'user/getAll')
         .then(response =>  {
             console.log(response);
             this.setState(this.state.users=response.data)          
@@ -31,7 +32,7 @@ class AddUser extends Component {
     }
     handleSubmit = (e)=>{
         if(this.state.id===0){
-            axios.post('https://studentv-api.herokuapp.com/studentv/user/create', {
+            axios.post(this.state.BASE_URL+'user/create', {
                 firstName : this.state.fname,
                 userName : this.state.uname,
                 email : this.state.email,
@@ -40,7 +41,7 @@ class AddUser extends Component {
             ).then((response) => console.log(response));
         }
         else{
-            axios.post('https://studentv-api.herokuapp.com/studentv/user/update', {
+            axios.post(this.state.BASE_URL+'user/update', {
                 id : this.state.id,
                 firstName : this.state.fname,
                 userName : this.state.uname,
@@ -53,7 +54,7 @@ class AddUser extends Component {
         e.preventDefault()
     }
     view  = (id) =>{
-        axios.get('https://studentv-api.herokuapp.com/studentv/user/view/'+id)
+        axios.get(this.state.BASE_URL+'/user/view/'+id)
         .then(response =>  {
             console.log(response);
             this.setState({
@@ -66,7 +67,7 @@ class AddUser extends Component {
         })
     }
     delete  = (id) =>{
-        axios.get('https://studentv-api.herokuapp.com/studentv/user/delete/'+id)
+        axios.get(this.state.BASE_URL+'/user/delete/'+id)
         .then(response =>  {
             console.log(response); 
             window.location.reload(true);      
